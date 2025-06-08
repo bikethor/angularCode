@@ -1,0 +1,81 @@
+<div class="card animate-fade-slide">
+    <div class="card-header">
+      <span class="titles">Gráficas</span>
+    </div>
+    <div class="card-body">
+
+
+        <div class="row mb-5">
+
+            <div class="col-md-6 bar-chart">
+                <apx-chart 
+                [series]="barChartSeries"
+                [chart]="barChartOptions"
+                [xaxis]="barChartXAxis"
+                [title]="barChartTitle">
+                </apx-chart>
+            </div>
+            <div class="col-md-6 doughnut-chart text-center">
+                <apx-chart 
+                [series]="doughnutChartSeries"
+                [chart]="doughnutChartOptions"
+                [labels]="doughnutChartLabels"
+                [responsive]="doughnutChartResponsive"
+                [legend]="doughnutChartLegend"
+                [dataLabels]="doughnutChartDataLabels">
+              </apx-chart>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12 line-chart">
+                <apx-chart 
+                [series]="lineChartSeries"
+                [chart]="lineChartOptions"
+                [xaxis]="lineChartXAxis"
+                [dataLabels]="lineChartDataLabels"
+                [title]="lineChartTitle">
+              </apx-chart>
+            </div>
+        </div>
+
+
+        <!--
+        <div class="charts-container">
+            <div class="chart">
+              <apx-chart 
+                [series]="barChartSeries"
+                [chart]="barChartOptions"
+                [xaxis]="barChartXAxis"
+                [title]="barChartTitle">
+              </apx-chart>
+            </div>
+          
+            <div class="chart">
+              <apx-chart 
+                [series]="doughnutChartSeries"
+                [chart]="doughnutChartOptions"
+                [labels]="doughnutChartLabels"
+                [responsive]="doughnutChartResponsive"
+                [legend]="doughnutChartLegend">
+              </apx-chart>
+            </div>
+          
+            <div class="chart">
+              <apx-chart 
+                [series]="lineChartSeries"
+                [chart]="lineChartOptions"
+                [xaxis]="lineChartXAxis"
+                [dataLabels]="lineChartDataLabels"
+                [title]="lineChartTitle">
+              </apx-chart>
+            </div>
+          </div>
+-->
+
+    </div>
+</div>
+
+
+
+  

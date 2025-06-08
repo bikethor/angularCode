@@ -1,0 +1,99 @@
+.chat-container {
+    border: 1px solid #ccc;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+  }
+  
+  .messages .mine,
+  .messages .theirs {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin: 5px;
+    max-width: 70%; /* Prevents bubbles from being too wide */
+    word-wrap: break-word; /* Wrap long words/text */
+    white-space: pre-wrap; /* Preserves line breaks and wraps text */
+  }
+  
+  .messages .mine {
+    background-color: #e5f2ff;
+    text-align: left;
+    align-self: flex-end; /* Align to right in flex container */
+  }
+  
+  .messages .theirs {
+    background-color: #f1f0f0;
+    text-align: left;
+    align-self: flex-start; /* Align to left in flex container */
+  }
+
+  .timestamp {
+    display: block;
+    font-size: 0.7rem;
+    color: gray;
+    text-align: right;
+    margin-top: 2px;
+  }
+  
+  
+  .input-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+  }
+  
+.input-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+  
+  button {
+    margin-left: 5px;
+    padding: 8px 12px;
+  }
+
+  button.btn:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transform: scale(1.03);
+    transition: all 0.2s ease;
+  }
+  
+
+  .date-separator {
+    font-size: 15px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    display: inline-block;
+  }
+
+  .separator{
+    text-align: center;
+  }
+
+
+  .send-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 8px;
+  color: #388bd8;
+}
+
+.send-icon svg {
+  vertical-align: middle;
+}

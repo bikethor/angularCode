@@ -1,0 +1,91 @@
+<div class="card animate-fade-slide">
+    <div class="card-header">
+      <span class="titles">Gender</span>
+    </div>
+    <div class="card-body">
+  
+      <div class="table-responsive">
+  
+        <div class="panelButtons">
+          <button class="btn btn-primary mb-3" (click)="openNewUserModal()">
+            <i class="fas fa-plus me-1"></i> New Gender
+          </button>
+        </div>
+  
+  
+        <table class="table table-striped table-hover">
+          <thead class="thead-lightblue">
+            <tr>
+              <th>Gender</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let gender of genders | paginate: { itemsPerPage: 5, currentPage: page }">
+              <td>{{ gender.gender_Description }}</td>
+              <td class="text-center">
+                <button class="transparent-btn me-2 custom-tooltip-container" (click)="editGender(gender)">
+                  <i class="fas fa-edit"></i>
+                  <span class="custom-tooltip">Edit gender</span>
+                </button>
+                <button class="transparent-btn custom-tooltip-container" (click)="deleteGender(gender)">
+                  <i class="fas fa-trash-alt"></i>
+                  <span class="custom-tooltip">Delete gender</span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+  
+  <!-- Pagination Controls -->
+  <div class="d-flex justify-content-between align-items-center mt-3">
+    <div>
+      <small class="text-muted">Total records: {{ genders.length }}</small>
+    </div>
+  
+    <pagination-controls 
+      (pageChange)="page = $event"
+      [autoHide]="true"
+      class="mb-0"
+    ></pagination-controls>
+  </div>
+  
+      </div>
+      
+    </div>
+  </div>
+  
+  <!-- EDIT MODAL -->
+  <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editUserModalLabel">{{ isEditing ? 'Edit Gender' : 'Add Gender' }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" *ngIf="selectedGender">
+          <form #genderForm="ngForm">
+                <div class="mb-3">
+                  <label class="form-label">Gender</label>
+                  <input 
+                  [(ngModel)]="selectedGender.gender_Description" 
+                  name="gendername" 
+                  class="form-control"
+                  required
+                  #gendername="ngModel" 
+                  [ngClass]="{ 'is-invalid': gendername.invalid && gendername.touched }"
+                  />
+                  <div class="text-danger mt-1" *ngIf="gendername.invalid && gendername.touched">
+                    Gender is required.
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button class="btn btn-primary" [disabled]="genderForm.invalid" (click)="saveUser()">{{ isEditing ? 'Update' : 'Save' }}</button>
+                </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>

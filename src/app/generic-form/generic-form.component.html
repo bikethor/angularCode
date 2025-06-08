@@ -1,0 +1,129 @@
+<div class="card animate-fade-slide">
+    <div class="card-header">
+      <span class="titles">Form</span>
+    </div>
+    <div class="card-body">
+
+      <form (ngSubmit)="submit()" >
+
+          <div class="row">
+              <div class="col-md-4">
+                <!-- Textbox -->
+                <div class="mb-3">
+                  <label for="textValue" class="form-label">Text1</label>
+                  <input type="text" class="form-control" id="text1" [(ngModel)]="textValue" name="text1" />
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <!-- Textbox -->
+                <div class="mb-3">
+                  <label for="textValue" class="form-label">Text2</label>
+                  <input type="text" class="form-control" id="text2" [(ngModel)]="textValue" name="text2" />
+                </div>
+              </div>
+
+                <div class="col-md-4 mb-3">
+
+                <label for="selectedUserId" class="form-label">User</label>
+                <select class="form-select" id="selectedUserId" [(ngModel)]="selectedUserId" name="selectedUserId">
+                  <option value="">Select User</option>
+                  <option *ngFor="let user of users" [value]="user.id">
+                    {{ user.firstName }} {{ user.lastName }}
+                  </option>
+                </select>
+
+                </div>
+
+          </div>
+
+          <div class="row">
+
+              <div class="col-md-4 mb-3">
+                <label for="dateValue" class="form-label">Date</label>
+                <input type="date" class="form-control" id="dateValue" [(ngModel)]="dateValue" name="dateValue" />
+              </div>
+            
+              <!-- Static Combo -->
+              <div class="col-md-4 mb-3">
+                <label for="staticOption" class="form-label">Static Combo</label>
+                <select class="form-select" id="staticOption" [(ngModel)]="staticOption" name="staticOption">
+                  <option value="">Select</option>
+                  <option value="Option1">Option 1</option>
+                  <option value="Option2">Option 2</option>
+                </select>
+              </div>
+
+              <!-- Bootstrap Switch - Custom Styled -->
+              <div class="col-md-4 mb-3">
+                <label class="form-label" for="switchValue">Enable Option</label>
+                <label class="switch custom-switch">
+                  <input type="checkbox" id="switchValue" [(ngModel)]="switchValue" name="switchValue">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label class="form-label">Description</label>
+              <ngx-editor-menu [editor]="editor"></ngx-editor-menu>
+              <ngx-editor [editor]="editor" [(ngModel)]="htmlContent"></ngx-editor>
+            </div>
+          </div>
+
+          <div class="row">
+              <!-- Users Combo (dynamic) -->
+              <div class="col-md-4">
+
+                  <label class="form-label">Upload Image</label>
+
+                  <div class="d-flex align-items-center gap-2 flex-wrap">
+
+
+                    <!-- File name or Image Preview -->
+                    <ng-container *ngIf="imagePreview; else noFile">
+                      <img [src]="imagePreview" class="img-thumbnail" style="width: 40px; height: 40px; object-fit: cover;" />
+                    </ng-container>
+                    <ng-template #noFile>
+                      <span class="nofile-text">No image selected</span>
+                    </ng-template>
+
+                    <!-- Button to trigger file input -->
+                    <button type="button" class="btn btn-secondary" (click)="fileInput.click()">
+                      <i class="fas fa-upload"></i>
+                    </button>
+
+                    <!-- Hidden file input -->
+                    <input
+                      type="file"
+                      #fileInput
+                      class="d-none"
+                      (change)="onImageSelected($event)"
+                      accept="image/*"
+                    />
+                  </div>
+
+              </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-3 offset-md-9 mb-3"> <!-- Aligns to the right in the last col (same size as col-md-3) -->
+              <div class="d-flex">
+                <button class="btn btn-primary w-100 me-2">
+                  <i class="fas fa-search me-1"></i> Submit
+                </button>
+              </div>
+            </div>
+          </div>
+
+      </form>
+
+
+    </div>
+</div>
+
+

@@ -1,0 +1,148 @@
+<div class="d-flex">
+    <aside class="sidebar" [class.closed]="!isSidebarOpen">
+      <img src="assets/lorem.png" alt="User" [ngClass]="switchLogo" />
+      <div class="accordion" id="menuAccordion">
+        <div class="accordion-item" *ngFor="let item of menuItems; let i = index">
+          
+          <!-- If item has submenus -->
+          <div *ngIf="item.subMenuItems.length > 0; else singleItem">
+
+            <div class="cursor-pointer p-3 border-bottom d-flex align-items-center justify-content-between"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#collapse' + i"
+                  role="button"
+                  aria-expanded="false"
+                  [attr.aria-controls]="'collapse' + i">
+              <div class="d-flex align-items-center">
+                <i class="{{ item.icon }} me-2"></i> <span *ngIf="isSidebarOpen">{{ item.title }}</span>
+              </div>
+              <i class="fas fa-chevron-down arrow-icon"></i>
+            </div>
+          
+            <div [id]="'collapse' + i" class="accordion-subitemspace accordion-collapse collapse ps-4">
+              <div *ngFor="let sub of item.subMenuItems" class="py-2 accordion-subitem">
+                <a [routerLink]="sub.route" class="text-decoration-none text-white">
+                  <i class="{{ sub.icon }} mx-2"></i> <span *ngIf="isSidebarOpen">{{ sub.title }}</span> 
+                </a>
+              </div>
+            </div>
+
+          </div>
+      
+          <!-- Else show single router link -->
+          <ng-template #singleItem>
+            <div class="p-3 border-bottom">
+              <a [routerLink]="item.route" class="text-decoration-none d-flex align-items-center">
+                <i class="{{ item.icon }} me-2"></i> <span *ngIf="isSidebarOpen">{{ item.title }}</span>
+              </a>
+            </div>
+          </ng-template>
+      
+        </div>
+      </div>    
+    </aside>
+
+    <button class="toggle-btn" (click)="toggleSidebar()">
+      <i class="fas" [ngClass]="isSidebarOpen ? 'fa-angle-left' : 'fa-angle-right'"></i>
+    </button>
+    
+
+    <header class="top-bar">
+      <div class="welcome-text">
+      </div>
+      <div class="user-profile">
+        <div class="user-toggle" (click)="toggleDropdown()">
+          Hello {{ auth.firstName }}
+          <i class="fa-solid" [ngClass]="showDropdown ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+        </div>
+        <div class="dropdown" *ngIf="showDropdown">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div>
+              <img [src]="auth.userImage" alt="User" class="profile-pic" />
+            </div>
+            <div>
+              <p><strong>Name:</strong> {{ auth.firstName }} {{ auth.lastName }}</p>
+              <p><strong>Email:</strong></p>
+            </div>
+          </div>
+          <div style="text-align: end;">
+              <button (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+          </div>
+         
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content area -->
+    <main class="content flex-grow-1 p-3" [ngClass]="contentMargin">
+      <router-outlet></router-outlet>
+    </main>
+
+
+    <footer class="footer-bar position-fixed bottom-0 end-0 p-3">
+      <button class="btn btn-primary chat-button" (click)="toggleChat()">
+        <i class="fas fa-comments"></i> Chat
+
+          <span
+          *ngIf="unreadCount > 0 && !chatOpen"
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+          style="font-size: 0.7rem;"
+          >
+            {{ unreadCount }}
+          </span>
+          
+      </button>
+    </footer>
+
+    <div
+      class="chat-popup card shadow-lg"
+      *ngIf="chatVisible"
+      style="position: fixed; bottom: 80px; right: 20px; width: 300px; max-height: 400px; z-index: 11;"
+    >
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <input type="text" class="form-control form-control-sm me-2" placeholder="Search..." [(ngModel)]="searchText" />
+        <button class="btn-close" (click)="toggleChat()"></button>
+      </div>
+      <div class="card-body overflow-auto p-2" style="max-height: 300px;">
+        <ul class="list-group list-group-flush">
+          <li 
+            class="list-group-item cursor-pointer"
+            *ngFor="let user of filteredUsers"
+            (click)="selectChatUser(user)"
+          >
+          <div class="d-flex justify-content-between align-items-center">
+            <span> <img [src]="user.userImage ? user.userImage : 'assets/miniNoPic.png'" alt="User" class="chat-pic me-2" /> {{ user.firstName }} {{ user.lastName }}</span>
+            <span *ngIf="user.unreadCount > 0" class="badge bg-danger rounded-pill">
+              {{ user.unreadCount }}
+            </span>
+          </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+<!-- Chat footer popup -->
+<div class="chat-footer" *ngIf="selectedUser" style="position: fixed; bottom: 0; right: 33px; width: 300px; z-index: 1000;">
+  <div class="chat-header d-flex justify-content-between align-items-center bg-primary text-white p-2 radioTopBorders">
+    <span> <img [src]="selectedUser.userImage ? selectedUser.userImage : 'assets/miniNoPic.png'" alt="User" class="chat-pic me-2" /> {{ selectedUser.firstName }}</span>
+    <!--<button class="btn-close-chat" (click)="closeChat()"></button>-->
+  <span class="spaceClose" (click)="closeChat()">
+    <svg  class="icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <path d="M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414"/>
+    </svg>
+  </span>
+  </div>
+  <div class="chat-body border border-primary rounded-bottom bg-white">
+    <app-chat
+      [currentUserId]="auth.idUser"
+      [selectedUserId]="selectedUser.id"
+    ></app-chat>
+  </div>
+</div>
+
+
+
+
+</div>
+  

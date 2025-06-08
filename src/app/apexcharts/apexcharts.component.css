@@ -1,0 +1,18 @@
+
+  .bar-chart {
+    /* No fixed height */
+    width: 50%;
+    /*position: relative;*/
+  }
+  
+  
+  .doughnut-chart {
+    /* No fixed height */
+    width: 50%;
+    /*position: relative;*/
+  }
+
+  .line-chart {
+    height: 200px;
+    width: 100%;
+  }

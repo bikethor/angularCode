@@ -1,1 +1,590 @@
-/* You can add global styles to this file, and also import other style files */
+body, html {
+    font-family: 'Calibri', sans-serif; /* or any font you choose */
+}
+
+.titles{
+  font-weight: bold; 
+  font-size: 23px;
+}
+
+.table {
+  --bs-table-color-type: initial;
+  --bs-table-bg-type: initial;
+  --bs-table-color-state: initial;
+  --bs-table-bg-state: initial;
+  --bs-table-color: #393939;  /*font color for odd rows*/
+  --bs-table-bg: #d5e7f8; /*bg for odd control*/
+  --bs-table-border-color: #2a323a;
+  --bs-table-accent-bg: transparent;
+  --bs-table-striped-color: #393939; /*font color for even rows*/
+  --bs-table-striped-bg: #ffffff; /*bg for even control*/
+  --bs-table-active-color: #566c29;
+  --bs-table-active-bg: #b12e2e;
+  --bs-table-hover-color: #393939;
+  --bs-table-hover-bg: #b6c5d3; /*hover color*/
+  width: 100%;
+  margin-bottom: 1rem;
+  vertical-align: top;
+  border-color: #d5e7f8;
+}
+
+.ngx-pagination a, .ngx-pagination button {
+    color: #393939 !important;
+    display: block;
+    padding: .1875rem .625rem;
+    border-radius: 0;
+}
+
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #388bd8 !important;
+  --bs-btn-border-color: #4f90f2 !important;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #5a9ad6 !important;
+  --bs-btn-hover-border-color: #79a4e5 !important;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #388bd8 !important;
+  --bs-btn-active-border-color: #0a53be;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+
+
+/* Default (not focused) valid state */
+select.is-valid {
+  border-color: #dee2e6 !important;
+  background-image: none !important; /* Removes the green checkmark */
+  box-shadow: none !important;
+  appearance: auto !important; /* Ensures default arrow is preserved */
+}
+
+/* Focused valid state */
+select.is-valid:focus {
+  border-color: #86b7fe !important; /* Blue border while focusing */
+  box-shadow: #0d6efd40 0px 0px 0px 0.25rem !important;
+  appearance: auto !important; /* Keeps the arrow when focused */
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* SIDEBAR MENU SECTION */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh; /* full screen height */
+  background-color: #e7f3fa;
+  color: white;
+  z-index: 3;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.sidebar.closed {
+  width: 60px; /* enough to still show icons */
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 1rem;
+  left: 235px;
+  z-index: 1000;
+  background-color: #79b4f3;
+  color: white;
+  border: none;
+  border-radius: 55%;
+  padding: 0.1rem 0.5rem;
+  cursor: pointer;
+  transition: left 0.3s ease;
+}
+
+.sidebar.closed ~ .toggle-btn {
+  left: 50px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #34495e;
+}
+
+
+
+
+/* MENU STYLE */
+/* Accordion container */
+.accordion {
+background-color: transparent;
+border: none;
+color: white;
+font-family: 'Segoe UI', sans-serif;
+}
+
+/* Each accordion item: no borders */
+.accordion-item {
+background-color: #388bd8;
+border: none;
+margin-bottom: 2px;
+}
+
+/* Each accordion item: no borders */
+.accordion-item:hover {
+background-color: #5a9ad6;
+border: none;
+margin-bottom: 2px;
+}
+
+/* Each accordion subitem: no borders */
+.accordion-subitem {
+background-color: #84c1fa;
+border: none;
+margin-bottom: 2px;
+}
+
+/* Each accordion subitem: no borders */
+.accordion-subitem:hover {
+background-color: #98c8f5;
+border: none;
+margin-bottom: 2px;
+}
+
+/* Each accordion subitemSpace: no borders */
+.accordion-subitemspace {
+background-color: #e7f3fa;
+border: none;
+margin-bottom: 3px;
+}
+
+
+/* Accordion header button */
+.accordion-button {
+background-color: transparent;
+color: white;
+border: none;
+box-shadow: none;
+font-size: 14px;
+padding: 6px 12px;
+line-height: 1.4;
+}
+
+/* Arrow icon white */
+.accordion-button::after {
+filter: invert(1);
+}
+
+/* Button hover effect */
+.accordion-button:hover {
+color: #cccccc;
+}
+
+/* Expanded state style */
+.accordion-button:not(.collapsed) {
+color: #ffffff;
+background-color: transparent;
+}
+
+/* Submenu container */
+.accordion-body {
+background-color: transparent;
+color: white;
+padding: 4px 20px;
+font-size: 13px;
+line-height: 1.4;
+}
+
+/* Submenu links: no bottom borders, tight layout */
+.accordion-body a {
+color: white;
+text-decoration: none;
+display: block;
+padding: 4px 0;
+margin: 0;
+}
+
+.accordion-body a:hover {
+color: #00bfff;
+}
+
+/* Optional: icons */
+.accordion i.material-icons {
+font-size: 16px;
+margin-right: 6px;
+vertical-align: middle;
+color: white;
+}
+
+a {
+color: #fff !important;
+}
+
+a:hover {
+color: #ffffff !important;
+}
+
+.arrow-icon {
+transition: transform 0.3s ease;
+}
+
+/* Rotate the arrow when the parent is expanded */
+.collapsed + .accordion-collapse.show .arrow-icon {
+transform: rotate(180deg);
+}
+
+.accordion-item {
+color: #fff;
+}
+
+.cursor-pointer {
+cursor: pointer;
+}
+
+
+
+
+
+
+
+/* USER SECTION */
+.top-bar {
+position: fixed;
+top: 0;
+right: 0;
+height: 30px;
+width: 100%;
+background-color: white;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 1rem;
+z-index: 2; /* on top of sidebar */
+box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header.top-bar {
+flex-direction: row; /* make sure it’s horizontal */
+}
+
+
+.welcome-text {
+font-size: 1.2rem;
+font-weight: bold;
+}
+
+.user-profile {
+position: relative;
+cursor: pointer;
+}
+
+.profile-pic {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+object-fit: cover;
+border: 2px solid #ccc;
+transition: border-color 0.3s;
+}
+
+.chat-pic {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    object-fit: cover;
+    /*border: 1px solid #ccc;*/
+    transition: border-color 0.3s;
+}
+
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding-left: 3px !important;
+    color: var(--bs-list-group-color);
+    text-decoration: none;
+    background-color: var(--bs-list-group-bg);
+    border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color);
+}
+
+.logo-pic {
+width: 100%;
+height: 20%;
+object-fit: cover;
+transition: border-color 0.3s;
+}
+
+.logo-pic-mini {
+width: 100%;
+height: 8%;
+object-fit: cover;
+transition: border-color 0.3s;
+}
+
+.profile-pic:hover {
+border-color: #666;
+}
+
+.dropdown {
+position: absolute;
+top: 26px;
+right: 0;
+background: #fff;
+padding: 1rem;
+border-radius: 10px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+width: 220px;
+z-index: 10;
+}
+
+.dropdown p {
+margin: 0.3rem 0;
+font-size: 0.9rem;
+}
+
+.dropdown button {
+    margin-top: 0.5rem;
+    width: 50%;
+    padding: 0.1rem;
+    background: #388bd8;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.dropdown button:hover {
+background: #5a9ad6;
+}
+
+.user-toggle {
+cursor: pointer;
+display: flex;
+align-items: center;
+gap: 8px;
+font-weight: bold;
+font-size: 13px;
+color: #666;
+}
+
+.user-toggle i {
+transition: transform 0.3s ease;
+}
+
+
+/*CONTENT*/
+.ml-250 {
+margin-left: 250px;
+margin-top: 30px;
+}
+
+.ml-80 {
+margin-left: 80px;
+margin-top: 30px;
+}
+
+.content {
+transition: margin-left 0.3s ease;
+}
+
+
+
+
+
+
+
+
+
+.footer-bar {
+z-index: 11;
+}
+.chat-button {
+border-radius: 30px;
+padding: 10px 20px;
+}
+
+
+.list-group-item:hover {
+  background-color: #f0f8ff; /* light blue hover */
+}
+
+.bg-primary {
+  --bs-bg-opacity: 1;
+  background-color: #388bd8 !important;
+}
+
+.border-primary {
+  --bs-border-opacity: 1;
+  border-color: #388bd8 !important;
+}
+
+.start-100 {
+  left: 80% !important;
+}
+
+.top-0 {
+  top: 20px !important;
+}
+
+
+
+/*CHAT*/
+
+.radioTopBorders {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.icon-close {
+  fill: #ffffff; /* or #555 for a softer look */
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, fill 0.2s ease;
+  padding: 4px;
+}
+
+.spaceClose:hover .icon-close {
+  background-color: rgba(255, 255, 255, 0.6); /* translucent white circle */
+  cursor: pointer;
+}
+
+.spaceClose{
+  padding-right: 5px;
+}
+
+
+
+
+
+
+
+.custom-tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-tooltip {
+  visibility: hidden;
+  background-color: #00000097;
+  color: white;
+  text-align: center;
+  font-size: small;
+  border-radius: 5px;
+  padding: 3px 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 85%; /* above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.custom-tooltip-container:hover .custom-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
+.custom-file-upload {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.file-name {
+  font-style: italic;
+  color: #555;
+}
+
+.nofile-text {
+  font-size: x-small;
+  color: #6c757d;
+}
+
+
+
+label {
+    display: inline !important;
+}
+
+
+
+
+
+
+
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #cccccc5b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.spinner {
+  margin: 20px auto 0;
+  width: 36px;
+  height: 36px;
+  border: 4px solid #ccc;
+  border-top-color: #007bff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.modal-open {
+  overflow: hidden;
+}
+
+
+
+
+/* Forcefully hide SweetAlert2 checkbox if it's rendered */
+.swal2-checkbox {
+  display: none !important;
+}

@@ -1,0 +1,38 @@
+<div class="chat-container">
+    <div #chatBox class="messages d-flex flex-column chat-box" style="overflow-y: auto; height: 400px;">
+      <div *ngFor="let msg of messages" 
+      [ngClass]="{
+        'mine': msg.senderId === currentUserId && msg.type === 'message', 
+        'theirs': msg.senderId !== currentUserId && msg.type === 'message',
+        'separator': msg.type === 'separator'
+        }">
+      <!--<div *ngFor="let msg of messages" [ngClass]="{'mine': msg.senderId === currentUserId, 'theirs': msg.senderId !== currentUserId}">-->
+
+
+        <div *ngIf="msg.type === 'separator'" class="date-separator text-muted">
+          <small>{{ msg.label }}</small>
+        </div>
+
+        <span>{{ msg.content }}</span>
+        <small class="timestamp">{{ msg.timestamp | date:'shortTime' }}</small>
+      </div>
+    </div>
+  
+    <div class="input-box">
+      <input [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Type a message..." />
+      <span class="send-icon" (click)="sendMessage()">
+        <svg viewBox="0 0 24 24" height="24" width="24" style="cursor: pointer;">
+          <title>send</title>
+          <path fill="currentColor" d="M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z" />
+        </svg>
+      </span>
+      <!--
+      <button class="btn btn-primary d-flex align-items-center gap-2" (click)="sendMessage()">
+        <i class="fas fa-paper-plane"></i>
+        <svg viewBox="0 0 24 24" height="24" width="24" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24"><title>send</title><path fill="currentColor" d="M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z"></path></svg>
+      </button>
+      -->
+
+    </div>
+</div>
+  

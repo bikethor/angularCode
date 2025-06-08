@@ -1,0 +1,87 @@
+<div class="card">
+    <div class="card-header">
+      <span class="titles">User Report</span>
+    </div>
+    <div class="card-body">
+  
+      <div class="row mb-3">
+        <div class="col-md-3">
+          <input class="form-control" [(ngModel)]="username" placeholder="Username">
+        </div>
+        <div class="col-md-3">
+          <input class="form-control" [(ngModel)]="firstName" placeholder="First Name">
+        </div>
+        <div class="col-md-3">
+          <input class="form-control" [(ngModel)]="lastName" placeholder="Last Name">
+        </div>
+        <div class="col-md-3">
+          <select class="form-select" [(ngModel)]="idGender">
+            <option [value]="-1">- Select Gender -</option>
+            <option *ngFor="let g of genders" [value]="g.id">
+              {{ g.gender_Description }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3 offset-md-9 mb-3"> <!-- Aligns to the right in the last col (same size as col-md-3) -->
+          <div class="d-flex">
+            <button class="btn btn-primary w-50 me-2" (click)="loadUsers()">
+              <i class="fas fa-search me-1"></i> Search
+            </button>
+            <button class="btn btn-secondary w-50" (click)="clearFilters()">
+              <i class="fas fa-undo me-1"></i> Clear
+            </button>
+          </div>
+        </div>
+      </div>
+  
+      <table class="table table-striped table-hover">
+        <thead class="thead-lightblue">
+          <tr>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Create Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users | paginate: { itemsPerPage: 5, currentPage: page }">
+            <td>{{ user.username }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.createDate | date: 'short' }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Show message when there are no users -->
+      <div *ngIf="users.length === 0 && searched" class="alert alert-info text-center">
+        No users found with the selected filters.
+      </div>
+  
+      <!-- Pagination Controls -->
+      <div class="d-flex justify-content-between align-items-center mt-3">
+        <div>
+          <small class="text-muted">Total records: {{ users.length }}</small>
+        </div>
+
+        <pagination-controls 
+          (pageChange)="page = $event"
+          [autoHide]="true"
+          class="mb-0"
+        ></pagination-controls>
+      </div>
+
+    </div>
+  </div>
+
+
+<div class="popup-overlay" *ngIf="isLoading">
+  <div class="popup-content">
+    <p>{{ popupMessage }}</p>
+    <div class="spinner"></div>
+  </div>
+</div>
+  
