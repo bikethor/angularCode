@@ -1,0 +1,26 @@
+ngx-editor {
+  display: block;
+  border: 0px solid #dee2e6;
+
+  padding: 0.1rem;
+  border-radius: 0.25rem;
+  background-color: #fff;
+}
+
+ngx-editor-menu {
+  display: block;
+  margin-bottom: 0.1rem;
+  button {
+    margin-right: 0.25rem;
+  }
+}
+
+.NgxEditor__MenuBar {
+    display: flex;
+    flex-wrap: wrap;
+    padding: var(--ngx-editor-menubar-padding);
+    background-color: #f8f8f8 !important;
+    gap: .25rem .1rem;
+}
+
+/* You can customize colors, fonts, etc., from here */
