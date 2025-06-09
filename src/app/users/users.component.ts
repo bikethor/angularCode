@@ -30,6 +30,8 @@ export class UsersComponent implements OnInit {
   selectedFile: File | null = null;
   imagePreview: string | ArrayBuffer | null = null;
 
+  loading = true;
+
   // ====================
   // CONSTRUCTOR
   // ====================
@@ -61,6 +63,7 @@ export class UsersComponent implements OnInit {
   loadUsers(): void {
     this.userService.getUsers().subscribe(data => {
       this.users = data;
+      this.loading = false;
     });
   }
 

@@ -12,6 +12,24 @@
           </button>
         </div>
   
+        <!-- Skeleton rows while loading -->
+       <table *ngIf="loading"  style="width:100%;">
+        <tr>
+        <td class="skeleton-row" colspan="5"></td>
+        </tr>
+        <tr>
+          <td class="skeleton-row" colspan="5"></td>
+        </tr>
+        <tr>
+          <td class="skeleton-row" colspan="5"></td>
+        </tr>
+        <tr>
+          <td class="skeleton-row" colspan="5"></td>
+        </tr>
+        <tr>
+          <td class="skeleton-row" colspan="5"></td>
+        </tr>
+       </table>
   
         <table class="table table-striped table-hover">
           <thead class="thead-lightblue">

@@ -54,6 +54,7 @@ export class UserRepComponent implements OnInit  {
       next: (users) => {
         this.users = users;
         this.searched = true;
+
         this.isLoading = false;
         document.body.classList.remove('modal-open');
       },

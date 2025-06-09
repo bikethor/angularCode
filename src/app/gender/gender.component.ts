@@ -19,6 +19,7 @@ export class GenderComponent implements OnInit {
     page: number = 1;
     selectedGender: Gender | null = null;
     isEditing: boolean = false;
+    loading = true;
 
     openNewUserModal() {
       this.selectedGender = {
@@ -50,6 +51,7 @@ export class GenderComponent implements OnInit {
     loadGenders() {
       this.genderService.getGenders().subscribe(data => {
         this.genders = data;
+        this.loading = false;
       });
     }
 
