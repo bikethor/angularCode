@@ -14,6 +14,8 @@ import { UserService, UserWithUnread } from '../services/user.service';
 import { ChatService, Message } from '../chat/chat.service';
 import { ChatEventsService } from '../services/chat-events.service';
 
+declare var bootstrap: any;
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -32,6 +34,7 @@ export class DashboardComponent implements OnInit {
   selectedUser: UserWithUnread | null = null;
   ChatUserId: number | null = null;
   unreadCount = 0;
+
 
   // Users
   users: UserWithUnread[] = [];
@@ -141,8 +144,19 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  showBootstrapPreview() {   
+    if(this.selectedUser?.userImage)
+    {
+      // Show the modal using Bootstrap JS
+      const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+      modal.show();
+    }
+  }
+
   // --- Auth ---
   logout() {
     this.router.navigate(['/login']);
   }
+
+
 }
