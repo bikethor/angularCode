@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { GenderService, Gender } from '../services/gender.service';
+import Swal from 'sweetalert2';
 
 declare var bootstrap: any;
 
@@ -40,12 +41,30 @@ export class GenderComponent implements OnInit {
       }
       
       deleteGender(gender: Gender) {
-        if (confirm('Are you sure you want to delete this gender?')) {
-          this.genderService.deleteGender(gender.id).subscribe({
-            next: () => this.loadGenders(), // Refresh list
-            error: err => console.error('Delete failed', err)
-          });
-        }
+
+        Swal.fire({
+          title: 'Are you sure you want to delete the gender '+ gender.gender_Description +'?',
+          showDenyButton: true,
+          showCancelButton: false,
+          confirmButtonText: 'Yes',
+          denyButtonText: 'No',
+          customClass: {
+            actions: 'my-actions',
+            cancelButton: 'order-1 right-gap',
+            confirmButton: 'order-2',
+            denyButton: 'order-3',
+          },
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.genderService.deleteGender(gender.id).subscribe({
+              next: () => this.loadGenders(), // Refresh list
+              error: err => console.error('Delete failed', err)
+            });
+          } else if (result.isDenied) {
+            //Swal.fire('Changes are not saved', '', 'info')
+          }
+        })
+
       }
 
     loadGenders() {

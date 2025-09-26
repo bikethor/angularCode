@@ -5,6 +5,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { UserService, User } from '../services/user.service';
 import { GenderService, Gender } from '../services/gender.service';
+import Swal from 'sweetalert2';
 
 declare var bootstrap: any;
 
@@ -82,12 +83,29 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser(user: User): void {
-    if (confirm('Are you sure you want to delete this user?')) {
-      this.userService.deleteUser(user.id).subscribe({
-        next: () => this.loadUsers(),
-        error: err => console.error('Delete failed', err)
-      });
-    }
+
+        Swal.fire({
+          title: 'Are you sure you want to delete the user '+ user.firstName + ' ' +user.lastName +'?',
+          showDenyButton: true,
+          showCancelButton: false,
+          confirmButtonText: 'Yes',
+          denyButtonText: 'No',
+          customClass: {
+            actions: 'my-actions',
+            cancelButton: 'order-1 right-gap',
+            confirmButton: 'order-2',
+            denyButton: 'order-3',
+          },
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.userService.deleteUser(user.id).subscribe({
+              next: () => this.loadUsers(), // Refresh list
+              error: err => console.error('Delete failed', err)
+            });
+          } else if (result.isDenied) {
+            //Swal.fire('Changes are not saved', '', 'info')
+          }
+        })
   }
 
   saveUser(): void {
