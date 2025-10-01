@@ -9,6 +9,7 @@
         id="username"
         name="username"
         [(ngModel)]="username"
+        [disabled]="isLoading"
         required
       />
     </div>
@@ -20,10 +21,31 @@
         id="password"
         name="password"
         [(ngModel)]="password"
+        [disabled]="isLoading"
         required
       />
     </div>
 
-    <button type="submit" [disabled]="!loginForm.valid">Login</button>
+    <!--<button type="submit" [disabled]="!loginForm.valid">Login</button>-->
+        <!-- Button changes text to dots when loading -->
+    <button type="submit" [disabled]="!loginForm.valid || isLoading">
+      <ng-container *ngIf="!isLoading">Login</ng-container>
+      <div *ngIf="isLoading" class="dots-loader">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+
+    <!--
+    <div class="popup-overlay" *ngIf="isLoading">
+      <div class="popup-content">
+        <p>{{ popupMessage }}</p>
+        <div class="spinner"></div>
+      </div>
+    </div>
+    -->
+
+    
   </form>
 </div>

@@ -4,12 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service'; // Adjust path if needed
 import Swal from 'sweetalert2';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -19,6 +20,8 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
   error = '';
+  isLoading = false;
+  popupMessage = '';
 
   //login() {
   //  console.log('Logging in with:', this.username, this.password);
@@ -27,30 +30,16 @@ export class LoginComponent {
   //constructor(private auth: AuthService, private http: HttpClient, private router: Router) {}
   constructor(private auth: AuthService, private router: Router) {}
 
-  /*
   login() {
-    const loginData = {
-      username: this.username,
-      password: this.password
-    };
 
-    this.http.post<any>('http://localhost:5044/api/auth/login', loginData)
-        .subscribe({
-        next: (res) => {
-          this.auth.setUserData(res.firstName, res.id);
-          this.router.navigate(['/dashboard']);
-        },
-        error: (err) => {
-          alert('Login failed: ' + (err.error?.message || 'Unknown error'));
-          console.error(err);
-        }
-      });
-    
-  }
+  this.isLoading = true;
+  /*
+  this.isLoading = true;
+  this.popupMessage = 'Login...';
+  document.body.classList.add('modal-open');
   */
 
 
-  login() {
     const loginData = {
       username: this.username,
       password: this.password
@@ -62,8 +51,16 @@ export class LoginComponent {
         this.router.navigate(['/dashboard']);
       },
       error: (error) => {
-        //alert('Login failed: ' + (error.error?.message || 'Unknown error'));
 
+        
+        /*
+        this.isLoading = false;
+        document.body.classList.remove('modal-open');
+        */
+
+        this.isLoading = false;
+
+        
         Swal.fire({
           icon: 'error',
           title: 'Error',
