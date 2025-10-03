@@ -11,7 +11,7 @@
                 <!-- Textbox -->
                 <div class="mb-3">
                   <label for="textValue" class="form-label">Text1</label>
-                  <input type="text" class="form-control" id="text1" [(ngModel)]="textValue" name="text1" />
+                  <input type="text" class="form-control" id="text1" [(ngModel)]="text1" name="text1" />
                 </div>
               </div>
 
@@ -19,7 +19,7 @@
                 <!-- Textbox -->
                 <div class="mb-3">
                   <label for="textValue" class="form-label">Text2</label>
-                  <input type="text" class="form-control" id="text2" [(ngModel)]="textValue" name="text2" />
+                  <input type="text" class="form-control" id="text2" [(ngModel)]="text2" name="text2" />
                 </div>
               </div>
 
@@ -38,6 +38,59 @@
           </div>
 
           <div class="row">
+            <div class="col-md-4">
+              <!-- Email -->
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" />
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <!-- Number -->
+              <div class="mb-3">
+                <label for="age" class="form-label">Number</label>
+                <input type="number" class="form-control" id="age" [(ngModel)]="age" name="age" />
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <label for="timeValue" class="form-label">Time</label>
+              <input type="time" class="form-control" id="timeValue" [(ngModel)]="timeValue" name="timeValue" />
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-4 mb-3">
+              <label for="colorValue" class="form-label">Favorite Color</label>
+              <input type="color" class="form-control form-control-color" id="colorValue" [(ngModel)]="colorValue" name="colorValue" />
+            </div>
+
+
+            <div class="col-md-4 mb-3">
+              <label class="form-label d-block">Gender</label>
+              <div class="form-check form-check-inline" *ngFor="let genderItem of genderCombo">
+                <input class="form-check-input" type="radio" [id]="genderItem.id" [value]="genderItem.id" [(ngModel)]="gender" name="gender">
+                <label class="form-check-label" for="male">{{ genderItem.gender_Description }}</label>
+              </div>
+            </div>
+
+              <!-- Bootstrap Switch - Custom Styled -->
+              <div class="col-md-4 mb-3">
+                <label class="form-label" for="switchValue">Enable Option</label>
+                <label class="switch custom-switch">
+                  <input type="checkbox" id="switchValue" [(ngModel)]="switchValue" name="switchValue">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+
+          </div>
+
+           
+          <div class="row">
 
               <div class="col-md-4 mb-3">
                 <label for="dateValue" class="form-label">Date</label>
@@ -54,27 +107,7 @@
                 </select>
               </div>
 
-              <!-- Bootstrap Switch - Custom Styled -->
-              <div class="col-md-4 mb-3">
-                <label class="form-label" for="switchValue">Enable Option</label>
-                <label class="switch custom-switch">
-                  <input type="checkbox" id="switchValue" [(ngModel)]="switchValue" name="switchValue">
-                  <span class="slider"></span>
-                </label>
-              </div>
 
-
-          </div>
-
-          <div class="row">
-            <div class="col-md-12 mb-3">
-              <label class="form-label">Description</label>
-              <ngx-editor-menu [editor]="editor"></ngx-editor-menu>
-              <ngx-editor [editor]="editor" [(ngModel)]="htmlContent"></ngx-editor>
-            </div>
-          </div>
-
-          <div class="row">
               <!-- Users Combo (dynamic) -->
               <div class="col-md-4">
 
@@ -107,6 +140,21 @@
                   </div>
 
               </div>
+
+
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label class="form-label">Description</label>
+              <ngx-editor-menu [editor]="editor"></ngx-editor-menu>
+              <ngx-editor [editor]="editor" [(ngModel)]="htmlContent" name="htmlContent"></ngx-editor>
+            </div>
+          </div>
+
+          <div class="row">
+
           </div>
 
 

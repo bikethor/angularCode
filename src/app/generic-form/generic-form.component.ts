@@ -2,6 +2,7 @@ import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserService, User } from '../services/user.service';
+import { GenderService,Gender } from '../services/gender.service';
 import { NgxEditorModule } from 'ngx-editor';
 import { Editor } from 'ngx-editor';
 
@@ -14,22 +15,32 @@ import { Editor } from 'ngx-editor';
   styleUrl: './generic-form.component.css'
 })
 export class GenericFormComponent implements OnInit {
+  text1: string = '';
+  text2: string = '';
+  selectedUserId: number | null = null;
+  email: string = '';
+  age: number | null = null;
+  timeValue: string = "";
+  colorValue: string = '';
+  gender: string = '';
+  switchValue: boolean = false;
   dateValue: string = '';
   staticOption: string = '';
-  selectedUserId: number | null = null;
-  textValue: string = '';
-  switchValue: boolean = false;
   imagePreview: string | ArrayBuffer | null = null;
   htmlContent: string = '';
+
   editor!: Editor;
   users: User[] = [];
+  genderCombo: Gender[] = [];
 
 
   private userService = inject(UserService); //Without constructor
+  private genderService = inject(GenderService);
 
  
   ngOnInit(): void {
     this.userService.getUsers().subscribe(users => this.users = users);
+    this.genderService.getGenders().subscribe(genderCombo => this.genderCombo = genderCombo)
     this.editor = new Editor();
   }
 
@@ -52,12 +63,19 @@ onImageSelected(event: any) {
 
   submit(): void {
     console.log({
+      text1: this.text1,
+      text2: this.text2,
+      selectedUserId: this.selectedUserId,
+      email: this.email,
+      age: this.age,
+      timeValue: this.timeValue,
+      colorValue: this.colorValue,
+      gender: this.gender,
+      switchValue: this.switchValue,
       dateValue: this.dateValue,
       staticOption: this.staticOption,
-      selectedUserId: this.selectedUserId,
-      textValue: this.textValue,
-      switchValue: this.switchValue,
-      imagePreview: this.imagePreview
+      imagePreview: this.imagePreview,
+      htmlContent: this.htmlContent     
     });
   }
 
